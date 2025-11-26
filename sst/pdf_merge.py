@@ -33,11 +33,13 @@ def main():
 
         # Write the final file
         merger.write(args.output)
-        merger.close()
         print(f"Successfully merged {len(args.input)} files into '{args.output}'")
 
     except Exception as e:
         print(f"An error occurred: {e}")
+        sys.exit(1)
+    finally:
+        merger.close()
 
 
 if __name__ == "__main__":
