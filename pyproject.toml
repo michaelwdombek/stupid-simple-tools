@@ -1,0 +1,25 @@
+[build-system]
+requires = ["setuptools>=61.0"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "stupid-simple-tools"
+version = "0.1.0"
+description = "A collection of stupid simple command-line tools"
+readme = "README.md"
+requires-python = ">=3.12"
+dependencies = [
+    "pypdf>=6.0.0",
+]
+
+[project.scripts]
+"sst.pdf-merge" = "sst.pdf_merge:main"
+
+[project.optional-dependencies]
+test = [
+    "pytest>=7.0.0",
+]
+
+[tool.setuptools.packages.find]
+where = ["."]
+include = ["sst*"]
