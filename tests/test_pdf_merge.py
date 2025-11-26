@@ -1,6 +1,7 @@
 """Tests for the pdf_merge tool."""
 
 import os
+import shutil
 import sys
 import tempfile
 from unittest.mock import patch
@@ -29,14 +30,8 @@ def sample_pdfs():
     
     yield temp_dir, pdf_files
     
-    # Cleanup
-    for pdf_file in pdf_files:
-        if os.path.exists(pdf_file):
-            os.remove(pdf_file)
-    output_path = os.path.join(temp_dir, "merged.pdf")
-    if os.path.exists(output_path):
-        os.remove(output_path)
-    os.rmdir(temp_dir)
+    # Cleanup - remove entire temp directory
+    shutil.rmtree(temp_dir, ignore_errors=True)
 
 
 def test_main_successful_merge(sample_pdfs):
